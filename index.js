@@ -1,4 +1,5 @@
 import * as contactsService from "./contacts.js"
+import { program } from 'commander';
 
 
 // TODO: рефакторити
@@ -29,7 +30,13 @@ const invokeAction = async({ action, contactId, name, email, phone }) =>{
   }
 }
 
-invokeAction({action:'list'});
-invokeAction({action:'get',contactId:'05olLMgyVQdWRwgKfg5J6'});
-invokeAction({action:'add',name:'Zhenia',email:'zhenya@gmail.com',phone:'0935675436'});
-invokeAction({action:'remove',contactId:"gOdRSMGD0ZZhGMwmi9ZtI"});
+program
+    .option('-a, --action <type>')
+    .option('-i, --id <type>')
+    .option('-n, --name <type>')
+    .option('-e, --email <type>')
+    .option('-p, --phone <type>')
+    
+program.parse();
+const options = program.opts();
+invokeAction(options);
