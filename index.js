@@ -3,7 +3,7 @@ import { program } from 'commander';
 
 
 // TODO: рефакторити
-const invokeAction = async({ action, contactId, name, email, phone }) =>{
+const invokeAction = async({ action, id, name, email, phone }) =>{
   switch (action) {
     case "list":
       const allContacts = await contactsService.listContacts();
@@ -11,7 +11,7 @@ const invokeAction = async({ action, contactId, name, email, phone }) =>{
       break;
 
     case "get":
-      const contactById =   await contactsService.getContactById(contactId);
+      const contactById =   await contactsService.getContactById(id);
       console.log(contactById);
       break;
 
@@ -21,7 +21,7 @@ const invokeAction = async({ action, contactId, name, email, phone }) =>{
       break;
 
     case "remove":
-      const deleteContact = await contactsService.removeContact(contactId);
+      const deleteContact = await contactsService.removeContact(id);
       console.log(deleteContact)
       break;
 
